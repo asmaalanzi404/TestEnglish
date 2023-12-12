@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Test</title>
+   
+</head>
+<body>
+    <h1 class="Text1">Short test</h1>
+    <p class="Text2">Choose the correct answer:</p>
+    <div class="flex-container">
+        <div class="Text-container" ><h2>This is (......) mom</h2>
+        <div class="button-group" id="Selected1">
+            <button  type="button"><h1>my</h1></button>
+            <button type="button"><h1>me</h1></button>
+            <button type="button"><h1>I </h1></button>
+         </div>
+         </div>
+        <div class="Text-container2"><h2>This is (......) Little brother</h2>
+        <div class="button-group" id="Selected2">
+            <button  type="button"><h1>we</h1></button>
+            <button type="button"><h1>our</h1></button>
+            <button type="button"><h1>Us</h1></button>
+        </div>
+        </div>
+            <div class="Text-container3"><h2>I (......) a bicycle</h2>
+            <div class="button-group"id="Selected3">
+                <button  type="button"><h1>has</h1></button>
+                <button type="button"><h1>have</h1></button>
+                <button type="button"><h1>Is</h1></button>
+            </div>
+            </div>
+            <div class="Text-container3"><h2>She (......) a smartphone</h2>
+            <div class="button-group" id="Selected4">
+                <button  type="button"><h1>has</h1></button>
+                <button type="button"><h1>have</h1></button>
+                 <button type="button"><h1>Is</h1></button>
+            </div>
+            </div>
+            <div class="Text-container3"><h2>I thank a dolphin is (......) </h2>
+                <div class="button-group" id="Selected5">
+                    <button  type="button"><h1>fast</h1></button>
+                    <button type="button"><h1>faster</h1></button>
+                     <button type="button"><h1>fastest</h1></button>
+                </div>
+                </div>
+                <div class="Text-container3"><h2>I thank a seahorse is (......) </h2>
+                    <div class="button-group" id="Selected6">
+                        <button  type="button"><h1>fast</h1></button>
+                        <button type="button"><h1>slow</h1></button>
+                         <button type="button"><h1>scary</h1></button>
+                    </div>
+                    </div>  
+                    <div class="Text-container3"><h2>I thank a sharks are  (......) </h2>
+                        <div class="button-group" id="Selected7">
+                            <button  type="button"><h1>scary</h1></button>
+                            <button type="button"><h1>small</h1></button>
+                             <button type="button"><h1>cute</h1></button>
+                        </div>
+                        </div>   
+                    </div>
+                <div class="button-result1">
+                <button id="sendBtn" class="button-result">submit</button>
+                </div>
+                <script>
+                    document.getElementById('sendBtn').addEventListener('click', function() {
+                        const correctAnswers = ['my', 'our', 'have', 'has', 'faster', 'slow', 'scary'];
+                
+                        const selectedAnswers = [
+                            document.getElementById('Selected1').querySelector('.selected'),
+                            document.getElementById('Selected2').querySelector('.selected'),
+                            document.getElementById('Selected3').querySelector('.selected'),
+                            document.getElementById('Selected4').querySelector('.selected'),
+                            document.getElementById('Selected5').querySelector('.selected'),
+                            document.getElementById('Selected6').querySelector('.selected'),
+                            document.getElementById('Selected7').querySelector('.selected')
+                        ];
+                
+                        let score = 0;
+                
+                        selectedAnswers.forEach((answer, index) => {
+                            if (answer) {
+                                const userResponse = answer.textContent.toLowerCase().trim();
+                                if (userResponse === correctAnswers[index]) {
+                                    score++;
+                                    answer.classList.add('correct');
+                                } else {
+                                    answer.classList.add('incorrect');
+                                    const correctButton = document.createElement('span');
+                                    correctButton.textContent = `(الاجابة الصحيحة ${correctAnswers[index]})`;
+                                    correctButton.classList.add('correct-answer');
+                                    answer.parentElement.appendChild(correctButton);
+                                }
+                            }
+                        });
+                
+                        alert(`النتيجة: ${score} من ${correctAnswers.length}`);
+                    });
+                
+                    const allButtons = document.querySelectorAll('.button-group button');
+                    allButtons.forEach(button => {
+                        button.addEventListener('click', function() {
+                            const current = this.parentElement.querySelector('.selected');
+                            if (current) {
+                                current.classList.remove('selected');
+                            }
+                            this.classList.add('selected');
+                        });
+                    });
+                </script>
+                
+                
+                </body>
+                </html>
